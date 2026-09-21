@@ -1,84 +1,82 @@
-# EcoAudit
+<div align="center">
 
-An offline-first environmental compliance inspection app built with Flutter. EcoAudit helps field inspectors register facilities, document environmental findings with photo and GPS evidence, calculate compliance scores, assign corrective actions, and export professional PDF reports.
+# 🌱 EcoAudit
 
-## Portfolio highlights
+**Offline-first environmental compliance inspections for field teams.**
 
-- Offline local persistence with JSON serialization
-- Camera and geolocation integration
-- Automated, severity-weighted compliance scoring
-- Corrective-action workflow and overdue detection
+![Flutter](https://img.shields.io/badge/Flutter-052E2B?style=for-the-badge&logo=flutter&logoColor=54C5F8)
+![Dart](https://img.shields.io/badge/Dart-052E2B?style=for-the-badge&logo=dart&logoColor=0175C2)
+![Offline](https://img.shields.io/badge/Offline_First-10B981?style=for-the-badge)
+
+</div>
+
+## Overview
+
+EcoAudit helps inspectors register facilities, document findings with photo and GPS evidence, calculate compliance scores, manage corrective actions, and export PDF reports—even without a network connection.
+
+<!-- Upload a real screenshot as docs/ecoaudit-dashboard.png, then uncomment:
+![EcoAudit dashboard](docs/ecoaudit-dashboard.png)
+-->
+
+## Features
+
+- Offline persistence with SharedPreferences
+- Facility and inspection registers
+- Camera evidence and GPS coordinates
+- Severity-weighted compliance scoring
+- Corrective actions and overdue detection
 - PDF report generation and native sharing
+- Seeded demonstration data
 - Material 3 responsive interface
-- Seeded demo data for an immediate product walkthrough
-- Unit tests for critical scoring logic
+- Unit-tested scoring logic
 
-## Screens
+## Technology
 
-1. Dashboard with compliance KPIs
-2. Inspection register
-3. Inspection detail, evidence, and report export
-4. Corrective-action tracker
-5. Facility management
+`Flutter` · `Dart` · `SharedPreferences` · `Image Picker` · `Geolocator` · `PDF` · `Printing`
 
 ## Run locally
 
-Install Flutter 3.24 or newer, then run:
+Requirements: Flutter 3.24+ and a configured Android/iOS toolchain.
 
 ```bash
+git clone https://github.com/ahvi27/ecoaudit.git
+cd ecoaudit
 flutter create . --platforms=android,ios
 flutter pub get
 flutter run
 ```
 
-The first command generates the standard native platform folders while preserving this project's source code.
-
-### Android permissions
-
-After generating the Android folder, add these entries above `<application>` in `android/app/src/main/AndroidManifest.xml`:
-
-```xml
-<uses-permission android:name="android.permission.CAMERA" />
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-```
-
-### iOS permissions
-
-Add these keys to `ios/Runner/Info.plist`:
-
-```xml
-<key>NSCameraUsageDescription</key>
-<string>Capture evidence during environmental inspections.</string>
-<key>NSLocationWhenInUseUsageDescription</key>
-<string>Attach coordinates to environmental findings.</string>
-```
+Add camera and location permissions to the generated native projects before testing evidence capture.
 
 ## Test
 
 ```bash
 flutter test
+flutter analyze
 ```
 
 ## Architecture
 
 ```mermaid
-flowchart TD
+flowchart LR
   UI[Flutter UI] --> Store[AppStore]
-  Store --> Local[SharedPreferences JSON]
-  UI --> Camera[Camera]
-  UI --> GPS[Geolocation]
-  Store --> Reports[PDF report service]
+  Store --> Local[Local JSON]
+  UI --> Evidence[Camera + GPS]
+  Store --> Report[PDF reports]
 ```
 
-## Next production milestones
+## Roadmap
 
-- Replace JSON persistence with Drift/SQLite for larger datasets
-- Add FastAPI/PostgreSQL synchronization and JWT authentication
-- Add configurable inspection templates
-- Add role-based access and cloud evidence storage
-- Add integration tests and CI/CD
+- Drift/SQLite storage
+- FastAPI and PostgreSQL synchronization
+- Authentication and role-based access
+- Configurable inspection templates
+- Cloud evidence storage and CI/CD
 
 ## License
 
-MIT
+MIT — see [LICENSE](LICENSE).
+
+## Author
+
+Built by [Gelila Mulugeta](https://github.com/ahvi27).
